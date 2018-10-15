@@ -17,6 +17,7 @@ public class VentanaJuego extends JFrame {
 	MundoJuego miMundo;        // Mundo del juego
 	CocheJuego miCoche;        // Coche del juego
 	MiRunnable miHilo = null;  // Hilo del bucle principal de juego	
+	boolean [] array4 = new boolean [4]; //Array booleano con 4 posiciones, xq hay que controlar solo 4 teclas
 
 	/** Constructor de la ventana de juego. Crea y devuelve la ventana inicializada
 	 * sin coches dentro
@@ -44,7 +45,8 @@ public class VentanaJuego extends JFrame {
 		// Formato de ventana
 		setSize( 1000, 750 );
 		setResizable( false );
-		// Escuchadores de botones
+		
+		// Escuchadores de botones con el ActionEvent e
 		bAcelerar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -73,6 +75,73 @@ public class VentanaJuego extends JFrame {
 				// System.out.println( "Nueva dirección de coche: " + miCoche.getDireccionActual() );
 			}
 		});
+		
+		// Escuchadores de botones con el ActionEvent released
+				bAcelerar.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent released) {
+						array4 [0] = false; //La posición de acelerar del coche es la 0 en el array
+						// System.out.println( "Nueva velocidad de coche: " + miCoche.getVelocidad() );
+					}
+				});
+				bFrenar.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent released) {
+						array4 [1] = false; //Posición de frenar en el array la 1
+						// System.out.println( "Nueva velocidad de coche: " + miCoche.getVelocidad() );
+					}
+				});
+				bGiraIzq.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent released) {
+						array4 [2] = false;
+						// System.out.println( "Nueva dirección de coche: " + miCoche.getDireccionActual() );
+					}
+				});
+				bGiraDer.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent released) {
+						array4 [3] = false;
+						// System.out.println( "Nueva dirección de coche: " + miCoche.getDireccionActual() );
+					}
+				});
+		
+
+				// Escuchadores de botones con el ActionEvent pressed
+				bAcelerar.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent pressed) {
+						array4 [0] = true; //La posición de acelerar del coche es la 0 en el array
+						// System.out.println( "Nueva velocidad de coche: " + miCoche.getVelocidad() );
+					}
+				});
+				bFrenar.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent pressed) {
+						array4 [1] = true; //Posición de frenar en el array la 1
+						// System.out.println( "Nueva velocidad de coche: " + miCoche.getVelocidad() );
+					}
+				});
+				bGiraIzq.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent pressed) {
+						array4 [2] = true;
+						// System.out.println( "Nueva dirección de coche: " + miCoche.getDireccionActual() );
+					}
+				});
+				bGiraDer.addActionListener( new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent pressed) {
+						array4 [3] = true;
+						// System.out.println( "Nueva dirección de coche: " + miCoche.getDireccionActual() );
+					}
+				});	
+		
+		
+		
+		
+		
+		
 		
 		// Añadido para que también se gestione por teclado con el KeyListener
 		pPrincipal.addKeyListener( new KeyAdapter() {
@@ -145,7 +214,8 @@ public class VentanaJuego extends JFrame {
 	 * @author Andoni Eguíluz
 	 * Facultad de Ingeniería - Universidad de Deusto (2014)
 	 */
-	class MiRunnable implements Runnable {
+	class MiRunnable implements Runnable
+	{
 		boolean sigo = true;
 		@Override
 		public void run() {
